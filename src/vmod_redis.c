@@ -210,7 +210,7 @@ void vmod_push(struct sess *sp, struct vmod_priv *priv, const char *command)
 
 const char *vmod_pop(struct sess *sp, struct vmod_priv *priv)
 {
-    redisReply *reply;
+    redisReply *reply = NULL;
     const char *ret = NULL;
     char *digits;
     redisContext *c;
