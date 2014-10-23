@@ -130,6 +130,9 @@ static redisReply *redis_common(struct sess *sp, struct vmod_priv *priv, const c
 
         if (reply == NULL) {
             LOG_E("redis error (command): err=%d errstr=%s\n", c->err, c->errstr);
+            pthread_setspecific(thread_key, NULL);
+            redisFree(c);
+            LOG_E("reconnecting\n");
         } else {
             return reply;
         }
